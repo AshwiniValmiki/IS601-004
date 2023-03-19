@@ -155,7 +155,10 @@ class BurgerMachine:
 
     def calculate_cost(self):
         # TODO add the calculation expression/logic for the inprogress_burger
-        return 10000
+        expectedcost = 0
+        for n in self.inprogress_burger:
+            expectedcost +=n.cost
+        return "{:.2f}".format(expectedcost)
 
 
     def run(self):
