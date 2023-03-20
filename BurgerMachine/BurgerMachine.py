@@ -17,7 +17,8 @@ class Usable:
         self.quantity -= 1
         if (self.quantity < 0):
             raise OutOfStockException
-        return self.quantity 
+        return self.quantity
+        
 
     def in_stock(self):
         return self.quantity > 0
@@ -83,7 +84,7 @@ class BurgerMachine:
                 self.inprogress_burger.append(c)
                 return
         raise InvalidChoiceException
-
+        self.run()
     def pick_patty(self, choice):
         if self.currently_selecting != STAGE.Patty:
             raise InvalidStageException
@@ -144,8 +145,8 @@ class BurgerMachine:
         if total == str(expected):
             print("Thank you! Enjoy your burger!")
             self.total_burgers += 1
-            self.total_sales += float(expected )# only if successful
-            #print(f"Total sales so far {self.total_sales}")
+            self.total_sales += float(expected)#only if successful
+            print(f"Total sales so far {self.total_sales}")
             self.reset()
         else:
             raise InvalidPaymentException
@@ -179,7 +180,7 @@ class BurgerMachine:
                 expected = self.calculate_cost()
                 # show expected value as currency format
                 # require total to be entered as currency format
-                total = input(f"Your total is {expected}, please enter the exact value.\n")
+                total = input(f"Your total is ${expected}, please enter the exact value.\n")
                 self.handle_pay(expected, total)
                 
                 choice = input("What would you like to do? (order or quit)\n")
@@ -192,28 +193,55 @@ class BurgerMachine:
             # quit
             print("Quitting the burger machine")
             sys.exit()
+
+        except OutOfStockException:
+            print("Out of stock.Kindly select another item.")
+       
+        except NeedsCleaningException:
+            print(f"This machine needs cleaning, it has used to its maximum ({self.USES_UNTIL_CLEANING}) and continues operation once cleaning is done.")
+            cleaning = input("What would you like to do? (continue or quit)\n")
+            if cleaning == "continue":
+                self.clean_machine()
+                print("Machine cleaned Successfully! It will continue functioning now.")
+                self.reset()
+            else:
+                exit()
         # handle OutOfStockException
             # show an appropriate message of what stage/category was out of stock
         # handle NeedsCleaningException
             # prompt user to type "clean" to trigger clean_machine()
             # any other input is ignored
             # print a message whether or not the machine was cleaned
+        except InvalidChoiceException:
+            print("The choice selected by you is invalid. Please select a valid choice")
         # handle InvalidChoiceException
             # show an appropriate message of what stage/category was the invalid choice was in
+            
+        except ExceededRemainingChoicesException:
+            if self.currently_selecting == STAGE.Patty:
+                print(f"Patties limit has exceeded! Kindly select no more than {self.MAX_PATTIES} patties.")
+                self.currently_selecting = STAGE.Toppings
+            elif self.currently_selecting == STAGE.Toppings:
+                print(f"Toppings limit exceeded! Kindly select no more than {self.MAX_TOPPINGS} toppings.")
+                self.currently_selecting = STAGE.Pay
+            
         # handle ExceededRemainingChoicesException
             # show an appropriate message of which stage/category was exceeded
             # move to the next stage/category
         # handle InvalidPaymentException
             # show an appropriate message
+        except InvalidPaymentException:
+            print("The entered payment value does not match. Kindly enter a valid payment value")
+            self.run()
+        except InvalidStageException:
+            print("Sorry, Kindly your not in the current stage.")
         except:
             # this is a default catch all, follow the steps above
             print("Something went wrong")
-        
         self.run()
 
     def start(self):
         self.run()
-
     
 if __name__ == "__main__":
     bm = BurgerMachine()
