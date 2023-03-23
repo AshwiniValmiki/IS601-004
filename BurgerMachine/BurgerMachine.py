@@ -46,6 +46,8 @@ class BurgerMachine:
     MAX_PATTIES = 3
     MAX_TOPPINGS = 3
 
+#UCID: av659
+#Date: 02/17/23
 
     buns = [Bun(name="No Bun", cost=0), Bun(name="White Burger Bun", cost=1), Bun("Wheat Burger Bun", cost=1.25),Bun("Lettuce Wrap", cost=1.5)]
     patties = [Patty(name="Turkey", quantity=10, cost=1), Patty(name="Veggie", quantity=10, cost=1), Patty(name="Beef", quantity=10, cost=1)]
@@ -154,6 +156,8 @@ class BurgerMachine:
     def print_current_burger(self):
         print(f"Current Burger: {','.join([x.name for x in self.inprogress_burger])}")
 
+#UCID: av659
+#Date: 02/17/23
     def calculate_cost(self):
         # TODO add the calculation expression/logic for the inprogress_burger
         expectedcost = 0
@@ -176,6 +180,8 @@ class BurgerMachine:
                 toppings = input(f"What topping would you like {', '.join(list(map(lambda t:t.name.lower(), filter(lambda t: t.in_stock(), self.toppings))))}? Or type done.\n")
                 self.handle_toppings(toppings)
                 self.print_current_burger()
+            #UCID: av659
+            #Date: 02/17/23
             elif self.currently_selecting == STAGE.Pay:
                 expected = self.calculate_cost()
                 # show expected value as currency format
@@ -193,30 +199,50 @@ class BurgerMachine:
             # quit
             print("Quitting the burger machine")
             sys.exit()
+        
+        #UCID: av659
+        #Date: 02/19/23
 
+        # handle OutOfStockException
+        # show an appropriate message of what stage/category was out of stock
         except OutOfStockException:
             print("Out of stock.Kindly select another item.")
        
+        #UCID: av659
+        #Date: 02/19/23
+
+        # handle NeedsCleaningException
+            # prompt user to type "clean" to trigger clean_machine()
+            # any other input is ignored
+            # print a message whether or not the machine was cleaned
         except NeedsCleaningException:
             print(f"This machine needs cleaning, it has used to its maximum ({self.USES_UNTIL_CLEANING}) and continues operation once cleaning is done.")
-            cleaning = input("What would you like to do? (continue or quit)\n")
-            if cleaning == "continue":
+            cleaning = input("What would you like to do? (clean or quit)\n")
+            if cleaning == "clean":
                 self.clean_machine()
                 print("Machine cleaned Successfully! It will continue functioning now.")
                 self.reset()
             else:
                 exit()
-        # handle OutOfStockException
-            # show an appropriate message of what stage/category was out of stock
-        # handle NeedsCleaningException
-            # prompt user to type "clean" to trigger clean_machine()
-            # any other input is ignored
-            # print a message whether or not the machine was cleaned
-        except InvalidChoiceException:
-            print("The choice selected by you is invalid. Please select a valid choice")
+        
+        #UCID: av659
+        #Date: 02/19/23
+
         # handle InvalidChoiceException
             # show an appropriate message of what stage/category was the invalid choice was in
-            
+        except InvalidChoiceException:
+            if self.currently_selecting == STAGE.Patty:
+                print(f"The choice selected by you is an invalid Patty. Please select a valid choice from the above Patties.")
+            elif self.currently_selecting == STAGE.Toppings:
+                print(f"The choice selected by you is an invalid Topping. Please select a valid choice from the above Toppings.")
+        
+        
+        #UCID: av659
+        #Date: 02/19/23
+        
+        # handle ExceededRemainingChoicesException
+            # show an appropriate message of which stage/category was exceeded
+            # move to the next stage/category
         except ExceededRemainingChoicesException:
             if self.currently_selecting == STAGE.Patty:
                 print(f"Patties limit has exceeded! Kindly select no more than {self.MAX_PATTIES} patties.")
@@ -225,16 +251,23 @@ class BurgerMachine:
                 print(f"Toppings limit exceeded! Kindly select no more than {self.MAX_TOPPINGS} toppings.")
                 self.currently_selecting = STAGE.Pay
             
-        # handle ExceededRemainingChoicesException
-            # show an appropriate message of which stage/category was exceeded
-            # move to the next stage/category
+        
+
+        #UCID: av659
+        #Date: 02/19/23
+
         # handle InvalidPaymentException
             # show an appropriate message
         except InvalidPaymentException:
             print("The entered payment value does not match. Kindly enter a valid payment value")
             self.run()
+
+
+
+        
         except InvalidStageException:
             print("Sorry, Kindly your not in the current stage.")
+        
         except:
             # this is a default catch all, follow the steps above
             print("Something went wrong")
