@@ -38,18 +38,18 @@ def second_order(first_order):
     first_order.handle_pay(10000,"10000")
     return first_order
 
-def test_production_line(second_order):
-    assert second_order is not None
+
 
 # add required test cases below
 
-#UCID : gpv
-#Date : 21 Oct 2022
+#UCID: av659
+#Date: 02/20/23
+
 def test_first_selection(machine):
     assert machine.currently_selecting.name == STAGE.Bun.name
 
-#UCID : gpv
-#Date : 21 Oct 2022
+#UCID: av659
+#Date: 02/20/23
 def test_patty_in_stock(machine):
     machine.patties[0].quantity = 1
     machine.handle_bun("no bun")
@@ -60,8 +60,8 @@ def test_patty_in_stock(machine):
     except OutOfStockException:
         assert False
 
-#UCID : gpv
-#Date : 21 Oct 2022
+#UCID: av659
+#Date: 02/20/23
 def test_toppings_in_stock(machine):
     machine.toppings[0].quantity = 1
     machine.handle_bun("wheat burger bun")
@@ -73,8 +73,8 @@ def test_toppings_in_stock(machine):
     except OutOfStockException:
         assert False
 
-#UCID : gpv
-#Date : 21 Oct 2022
+#UCID: av659
+#Date: 02/20/23
 def test_max_patties(machine):
     machine.handle_bun("white burger bun")
     for patty in range(machine.MAX_PATTIES - 1):
@@ -85,8 +85,8 @@ def test_max_patties(machine):
     except ExceededRemainingChoicesException:
         assert False
 
-#UCID : gpv
-#Date : 21 Oct 2022
+#UCID: av659
+#Date: 02/20/23
 def test_max_toppings(machine):
     machine.handle_bun("no bun")
     machine.handle_patty("next")
@@ -99,8 +99,8 @@ def test_max_toppings(machine):
     except ExceededRemainingChoicesException:
         assert False
 
-#UCID : gpv
-#Date : 21 Oct 2022
+#UCID: av659
+#Date: 02/20/23
 def test_total_cost(machine1):
     machine1.reset()
     machine1.handle_bun("wheat burger bun")
@@ -112,9 +112,33 @@ def test_total_cost(machine1):
     machine1.handle_toppings("tomato")
     machine1.handle_toppings("done")
     assert machine1.calculate_cost() == '4.00'
+    
 
-#UCID : gpv
-#Date : 21 Oct 2022
+    machine1.reset()
+    machine1.handle_bun("white burger bun")
+    machine1.handle_patty("beef")
+    machine1.handle_patty("next")
+    machine1.handle_toppings("mayo")
+    machine1.handle_toppings("ketchup")
+    machine1.handle_toppings("pickles")
+    machine1.handle_toppings("done")
+    assert machine1.calculate_cost() == '2.75'
+    
+
+    machine1.reset()
+    machine1.handle_bun("no bun")
+    machine1.handle_patty("veggie")
+    machine1.handle_patty("next")
+    machine1.handle_toppings("bbq")
+    machine1.handle_toppings("mustard")
+    machine1.handle_toppings("cheese")
+    machine1.handle_toppings("done")
+    assert machine1.calculate_cost() == '1.75'
+    
+
+
+#UCID: av659
+#Date: 02/20/23
 def test_total_sales(machine1):
     machine1.handle_bun("white burger bun")
     machine1.handle_patty("veggie")
@@ -132,11 +156,22 @@ def test_total_sales(machine1):
     machine1.handle_toppings("done")
     burgerCost2 = float(machine1.calculate_cost())
     machine1.handle_pay(burgerCost2, str(burgerCost2))
+    
+    machine1.handle_bun("no bun")
+    machine1.handle_patty("veggie")
+    machine1.handle_patty("next")
+    machine1.handle_toppings("bbq")
+    machine1.handle_toppings("mustard")
+    machine1.handle_toppings("cheese")
+    machine1.handle_toppings("done")
+    burgerCost3 = float(machine1.calculate_cost())
+    machine1.handle_pay(burgerCost3, str(burgerCost3))
 
-    assert machine1.total_sales == burgerCost1 + burgerCost2
+    assert machine1.total_sales == burgerCost1 + burgerCost2 + burgerCost3
 
-#UCID : gpv
-#Date : 21 Oct 2022
+
+#UCID: av659
+#Date: 02/20/23
 def test_total_burgers(second_order, machine1):
     machine1.handle_bun("no bun")
     machine1.handle_patty("veggie")
@@ -144,16 +179,19 @@ def test_total_burgers(second_order, machine1):
     machine1.handle_toppings("done")
     burgerCost1 = float(machine1.calculate_cost())
     machine1.handle_pay(burgerCost1, str(burgerCost1))
+
     machine1.handle_bun("Wheat burger bun")
     machine1.handle_patty("next")
     machine1.handle_toppings("mustard")
     machine1.handle_toppings("done")
     burgerCost2 = float(machine1.calculate_cost())
     machine1.handle_pay(burgerCost2, str(burgerCost2))
+
     machine1.handle_bun("White burger bun")
     machine1.handle_patty("next")
     machine1.handle_toppings("ketchup")
     machine1.handle_toppings("done")
     burgerCost3 = float(machine1.calculate_cost())
     machine1.handle_pay(burgerCost3, str(burgerCost3))
+
     assert second_order.total_burgers == 2 and machine1.total_burgers == 3
