@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Homework3",
+        "due": "2023-03-15 11:59:59",
+        "lastActivity": "2023-02-21 13:49:38.161166",
+        "description": "Homework2 task is all about solving certain problems of Data Mining. The latex editor can be used.",
+        "done": false
+    },
+    {
+        "name": "Homework4",
+        "due": "2023-03-30 11:59:59",
+        "lastActivity": "2023-02-21 17:07:35.597913",
+        "description": "Homework 4 is all about few lab assignments of data analytics with R .",
+        "done": false
+    }
+]
