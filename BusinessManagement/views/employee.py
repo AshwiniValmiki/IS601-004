@@ -189,14 +189,6 @@ def edit():
 
 
 
-@employee.route("/delete", methods=["GET"])
-def delete():
-    # TODO delete-1 delete employee by id
-    # TODO delete-2 redirect to employee search
-    # TODO delete-3 pass all argument except id to this route
-    # TODO delete-4 ensure a flash message shows for successful delete
-    # TODO delete-5 if id is missing, flash necessary message and redirect to search
-    pass
 
 @employee.route("/delete", methods=["GET"])
 def delete():                                                           #UCID : av659  #Date : April 7 2023
