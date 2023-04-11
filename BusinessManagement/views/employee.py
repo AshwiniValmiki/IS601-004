@@ -114,16 +114,14 @@ def add():                                                     #UCID : av659  #D
             
         if not has_error:
             try:                                                                      #UCID : av659  #Date : April 7 2023
-            result = DB.insertOne("""
-            INSERT INTO IS601_MP2_Employees (first_name, last_name, email, company_id)
-                        VALUES (%(first_name)s, %(last_name)s, %(email)s, %(company_id)s)
-                        ON DUPLICATE KEY UPDATE first_name=%(first_name)s, last_name = %(last_name)s, email = %(email)s, company_id = %(company_id)s
-            """, {'first_name': first_name, 'last_name': last_name, 'email': email, 'company_id': company_id}) # <-- TODO add-6 add query and add arguments
-            if result.status:
-                flash("Created Employee Record", "success")
-        except Exception as e:
-            # TODO add-7 make message user friendly                                    #UCID : av659  #Date : April 7 2023
-            print(e)
+                result = DB.insertOne("""INSERT INTO IS601_MP2_Employees (first_name, last_name, email, company_id) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(company_id)s)
+                ON DUPLICATE KEY UPDATE first_name=%(first_name)s, last_name = %(last_name)s, email = %(email)s, company_id = %(company_id)s
+                """, {'first_name': first_name, 'last_name': last_name, 'email': email, 'company_id': company_id}) # <-- TODO add-6 add query and add arguments
+                if result.status:
+                    flash("Created Employee Record", "success")
+            except Exception as e:
+                # TODO add-7 make message user friendly                                    #UCID : av659  #Date : April 7 2023
+                print(e)
             flash(f" Following exception occured while adding the employee record: {str(e)}", "danger")
     return render_template("add_employee.html", form=form)
             
