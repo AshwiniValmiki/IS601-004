@@ -199,7 +199,7 @@ def delete():
     pass
 
 @employee.route("/delete", methods=["GET"])
-def delete():                                                    #UCID : gpv #Date : 3rd Dec
+def delete():                                                           #UCID : av659  #Date : April 7 2023
     # TODO delete-1 delete employee by id
     # TODO delete-2 redirect to employee search
     # TODO delete-3 pass all argument except id to this route
