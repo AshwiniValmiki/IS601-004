@@ -17,15 +17,15 @@ def importCSV():
         print('file name1 --',file.filename, file.filename.lower().endswith('.csv'))
         if file.filename == '':
             flash('No selected file', "warning")
-            return redirect(request.url)
+            return redirect(request.url)                                        #UCID:av659; Date: 04/07/23
          # TODO importcsv-1 check that it's a .csv file, return a proper flash message if it's not
         elif file.filename.lower().endswith('.csv'):
             print('file name --',file.filename)
         else:
-            flash('Invalid File ', "warning")
+            flash('Invalid File Type, The file selected is not a .csv file', "warning")
             return redirect(request.url)
 
-        #UCID:VD345; Date: 04/08/23
+        #UCID:av659; Date: 04/07/23
         if file and secure_filename(file.filename):
             companies = []
             employees = []
@@ -52,6 +52,8 @@ def importCSV():
             # Note: this reads the file as a stream instead of requiring us to save it
             stream = io.TextIOWrapper(file.stream._file, "UTF8", newline=None)
             # TODO importcsv-2 read the csv file stream as a dict
+
+            #UCID:av659; Date: 04/07/23
           
             
             for row in csv.DictReader(stream, delimiter=','):
@@ -66,13 +68,16 @@ def importCSV():
                 
                 # TODO importcsv-4 extract employee data and append to employee list 
                 # as a dict only with employee data if all is present
-            #UCID:VD345; Date: 04/08/23  
+            #UCID:av659; Date: 04/07/23
                
             if len(companies) > 0:
                 print(f"Inserting or updating {len(companies)} companies")
                 try:
                     result = DB.insertMany(company_query, companies)
                     # TODO importcsv-5 display flash message about number of companies inserted
+
+                    #UCID:av659; Date: 04/07/23
+
                 except Exception as e:
                     traceback.print_exc()
                     flash("There was an error loading in the csv data", "danger")
@@ -88,7 +93,7 @@ def importCSV():
                 except Exception as e:
                     traceback.print_exc()
                     flash("There was an error loading in the csv data", "danger")
-                    #UCID:VD345; Date: 04/08/23
+                    #UCID:av659; Date: 04/07/23
             else:
                  # TODO importcsv-8 display flash message (info) that no employees were loaded
                   flash("No employees records were loaded", "danger")
@@ -100,4 +105,4 @@ def importCSV():
                     traceback.print_exc()
                     flash("There was an error counting session queries", "danger")
     return render_template("upload.html")
-    #UCID:VD345; Date: 04/08/23
+    #UCID:av659; Date: 04/07/23

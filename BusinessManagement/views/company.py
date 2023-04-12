@@ -8,10 +8,13 @@ def search():
     # DO NOT DELETE PROVIDED COMMENTS
     # TODO search-1 retrieve id, name, address, city, country, state, zip, website, employee count as employees for the company
     # don't do SELECT *
+    
+    #UCID:av659; Date: 04/07/23
 
     query = """SELECT c.id, c.name, c.address, c.city, c.country, c.state, c.zip, c.website, COUNT(e.id) AS employees FROM IS601_MP3_Companies c 
     LEFT JOIN IS601_MP3_Employees e ON e.company_id = c.id WHERE 1=1 """
-    #UCID:VD345;Date:04/08/23
+
+    #UCID:av659; Date: 04/07/23
     
     args = []  # <--- add values to replace %s/%(named)s placeholders
     allowed_columns = ["name", "city", "country", "state"]
@@ -24,7 +27,9 @@ def search():
     column = request.args.get('column')
     order = request.args.get('order')
     limit = request.args.get('limit')
-    #UCID:VD345;Date:04/08/23
+
+    #UCID:av659; Date: 04/07/23
+
     # TODO search-3 append a LIKE filter for name if provided
     if name:
         query += " AND c.name like %s"
@@ -37,13 +42,17 @@ def search():
     if state:
         query += " AND c.state like %s"
         args.append(f"%{state}%")
-    #UCID:VD345;Date:04/08/23
+
+   #UCID:av659; Date: 04/07/23
+
     query += " GROUP BY c.id"
     # TODO search-6 append sorting if column and order are provided and within the allows columsn and allowed order asc,desc
     if column and order:
         if column in allowed_columns and order in ["asc", "desc"]:
             query += f" ORDER BY {column} {order}"
-     #UCID:VD345;Date:04/08/23
+
+    #UCID:av659; Date: 04/07/23
+
     # TODO search-7 append limit (default 10) or limit greater than 1 and less than or equal to 100
     # TODO search-8 provide a proper error message if limit isn't a number or if it's out of bounds
     if limit and int(limit) > 0 and int(limit) <= 100:
@@ -51,7 +60,8 @@ def search():
         args.append(int(limit))
     elif limit and (int(limit) <= 0 or int(limit) > 100):
         flash("Enter the limit between 1 and 100", 'warning')
-         #UCID:VD345;Date:04/08/23
+
+    #UCID:av659; Date: 04/07/23
 
     print("query", query)
     print("args", args)
@@ -69,7 +79,7 @@ def search():
     # do this prior to passing to render_template, but not before otherwise it can break validation
 
     return render_template("list_companies.html", rows=rows, allowed_columns=allowed_list)
-    #UCID:VD345;Date:04/08/23
+    #UCID:av659; Date: 04/07/23
 
 
 @company.route("/add", methods=["GET", "POST"])
@@ -90,7 +100,7 @@ def add():
         # note: call zip variable zipcode as zip is a built in function it could lead to issues
 
         has_error = False  # use this to control whether or not an insert occurs
-
+        #UCID:av659; Date: 04/07/23
         name = str(request.form['name'])
         if not name:
             has_error = True
@@ -110,7 +120,7 @@ def add():
             has_error = True
             flash("Zipcode is required", "danger")
         website = str(request.form['website'])
-        #UCID:VD345;Date:04/08/23
+        #UCID:av659; Date: 04/07/23
 
         if not has_error:
             try:
@@ -118,7 +128,8 @@ def add():
                 INSERT INTO IS601_MP3_Companies
                 (name, address, city, country, state, zip, website) VALUES(%s, %s, %s, %s, %s, %s, %s)
                 """, name, address, city, country, state, zip, website)  # <-- TODO add-8 add query and add arguments
-                #UCID:VD345;Date:04/08/23
+                
+                #UCID:av659; Date: 04/07/23
                 if result.status:
                     flash("Added Company", "success")
             except Exception as e:
@@ -130,6 +141,8 @@ def add():
 
 @company.route("/edit", methods=["GET", "POST"])
 def edit():
+    #UCID:av659; Date: 04/07/23
+
     # TODO edit-1 request args id is required (flash proper error message)
     id = request.args.get('id') or False
     if not id:  # TODO update this for TODO edit-1
@@ -175,7 +188,8 @@ def edit():
                 has_error = True
                 flash("Zipcode is required", "danger")
             website = str(request.form.get('website') or '')
-            #UCID:VD345;Date:04/08/23
+
+            #UCID:av659; Date: 04/07/23
 
             if not has_error:
                 try:
@@ -193,7 +207,8 @@ def edit():
                         website = %s
                     WHERE id = %s
                     """, name, address, city, country, state, zip, website, id)
-                                #UCID:VD345;Date:04/08/23
+
+                         #UCID:av659; Date: 04/07/23
 
                     if result.status:
                         print("updated record")
@@ -202,7 +217,8 @@ def edit():
                     # TODO edit-10 make this user-friendly
                     print(f"{e}")
                     flash(str(e), "danger")
-                    #UCID:VD345;Date:04/08/23
+
+                    #UCID:av659; Date: 04/07/23
     row = {}
     try:
         # TODO edit-11 fetch the updated data
@@ -210,13 +226,15 @@ def edit():
             "SELECT name, address, city, country, state, zip, website FROM IS601_MP3_Companies WHERE id = %s", id)
         if result.status:
             row = result.row
-    #UCID:VD345;Date:04/08/23
+    #UCID:av659; Date: 04/07/23
+
     except Exception as e:
         # TODO edit-12 make this user-friendly
         flash(str(e), "danger")
     # TODO edit-13 pass the company data to the render template
     return render_template("edit_company.html", company=row)
-#UCID:VD345;Date:04/08/23
+
+#UCID:av659; Date: 04/07/23
 
 @company.route("/delete", methods=["GET"])
 def delete():
@@ -228,7 +246,9 @@ def delete():
     # TODO delete-6 if id is missing, flash necessary message and redirect to search
 
     id = request.args.get('id')
-    #UCID:VD345; Date: 04/08/23
+    
+    #UCID:av659; Date: 04/07/23
+
     print("printing id:",id)
     args = {**request.args}
     if id:
@@ -239,7 +259,8 @@ def delete():
             flash("Deleted successfully", 'success')
     return redirect(url_for("company.search", **args))
     pass
-     #UCID:VD345; Date: 04/08/23
+    
+    #UCID:av659; Date: 04/07/23
 
 
 
