@@ -14,6 +14,24 @@
             if a validation error occurs, the inserted form data should persist
             #}
 
+
+            <div class="form-group mb-3">
+                <label for="first_name" class="form-label">first_name</label>
+                <input id="first_name" class="form-control" name="first_name" type="text" value="">
+            </div>
+            <!-- UCID: av659 ; Date: 04/07/23 -->
+
+            <div class="form-group mb-3">
+                <label for="last_name" class="form-label">last_name</label>
+                <input id="last_name" class="form-control" name="last_name" type="text" value="">
+            </div>
+            <!-- UCID: av659 ; Date: 04/07/23 -->
+
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">email</label>
+                <input id="email" class="form-control" name="email" type="email" value="">
+            </div>
+            <!-- UCID: av659 ; Date: 04/07/23 -->
             {# use the below for company selection #}
             {{ company_dropdown() }}
             <input type="submit" class="btn btn-primary" value="Save Employee" />
