@@ -6,7 +6,8 @@ name: Deploy to heroku prod.
 on:
   push:
     branches:
-      - MiniProject-3
+    - mp3-prod
+    - MiniProject-3
 # Your workflows jobs.
 jobs:
   build:
