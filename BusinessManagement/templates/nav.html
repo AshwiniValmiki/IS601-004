@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
+    <div class="container-fluid">                                
         {# TODO replace my ucid mt85 with your ucid in the below a tag #}
-        <a class="navbar-brand" href="{{url_for('home.index')}}">DIAR-av659</a>
+        <a class="navbar-brand" href="{{url_for('home.index')}}">DIAR-av659</a> <!-- UCID: av659 Date : April 7 2023-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,7 @@
         {# TODO fill in the relevant hrefs using url_for() #}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- company dropdown nav -->
+                <!-- company dropdown nav -->     <!-- UCID: av659 Date : April 7 2023-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -21,7 +21,7 @@
 
                     </ul>
                 </li>
-                <!-- employee dropdown nav -->
+                <!-- employee dropdown nav -->     <!-- UCID: av659 Date : April 7 2023-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -29,10 +29,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{url_for('employee.search')}}">Search</a></li>
-                        <li><a class="dropdown-item" href="{{url_for('employee.search')}}">Add</a></li>
+                        <li><a class="dropdown-item" href="{{url_for('employee.add')}}">Add</a></li>
                     </ul>
                 </li>
-                <!-- admin dropdown nav -->
+                <!-- admin dropdown nav -->      <!-- UCID: av659 Date : April 7 2023-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
