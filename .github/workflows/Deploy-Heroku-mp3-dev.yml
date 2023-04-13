@@ -6,9 +6,11 @@ name: Deploy to heroku dev.
 on:
   push:
     branches:
+
       - mp3-dev  
       - MiniProject-3
-      
+
+
 # Your workflows jobs.
 jobs:
   build:
@@ -17,7 +19,9 @@ jobs:
       DB_URL: ${{secrets.DB_URL}}
       PORT: 8080
       # change to the project directory you're deploying
+
       WORKING_DIRECTORY: BusinessManagement
+
     defaults:
       run:
           working-directory: ${{env.WORKING_DIRECTORY}}
