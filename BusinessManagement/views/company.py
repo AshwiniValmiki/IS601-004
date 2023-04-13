@@ -8,7 +8,7 @@ def search():
     # DO NOT DELETE PROVIDED COMMENTS
     # TODO search-1 retrieve id, name, address, city, country, state, zip, website, employee count as employees for the company
     # don't do SELECT *
-    
+
     #UCID:av659; Date: 04/07/23
 
     query = """SELECT c.id, c.name, c.address, c.city, c.country, c.state, c.zip, c.website, COUNT(e.id) AS employees FROM IS601_MP3_Companies c 
@@ -120,6 +120,8 @@ def add():
             has_error = True
             flash("Zipcode is required", "danger")
         website = str(request.form['website'])
+        if website == '':
+            website = 'N/A'
         #UCID:av659; Date: 04/07/23
 
         if not has_error:
