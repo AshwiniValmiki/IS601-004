@@ -6,7 +6,10 @@ name: Deploy to heroku prod.
 on:
   push:
     branches:
-      - mp3-prod
+    - MiniProject-3
+    - mp3-prod
+    
+
 # Your workflows jobs.
 jobs:
   build:
@@ -15,7 +18,8 @@ jobs:
       DB_URL: ${{secrets.DB_URL}}
       PORT: 8080
       # change to the project directory you're deploying
-      WORKING_DIRECTORY: flask_sample
+
+      WORKING_DIRECTORY: BusinessManagement
     defaults:
       run:
           working-directory: ${{env.WORKING_DIRECTORY}}
