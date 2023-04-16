@@ -10,7 +10,6 @@ on:
       - DeploymentSetup
       - Flask-Sample
       - Flask-Sample-Pytest
-      
 # Your workflows jobs.
 jobs:
   build:
