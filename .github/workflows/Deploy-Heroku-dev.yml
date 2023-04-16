@@ -11,6 +11,8 @@ on:
       - Flask-Sample
       - Flask-Sample-Pytest
       
+      - Flask-Sample-SQL
+
 # Your workflows jobs.
 jobs:
   build:
