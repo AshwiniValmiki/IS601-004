@@ -10,7 +10,9 @@ on:
       - DeploymentSetup
       - Flask-Sample
       - Flask-Sample-PyTest
+      - Flask-Templates
       - Flask-Sample-CRUD
+
 # Your workflows jobs.
 jobs:
   build:
