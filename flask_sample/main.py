@@ -1,4 +1,4 @@
- #from https://towardsdatascience.com/deploy-to-google-cloud-run-using-github-actions-590ecf957af0
+# from https://towardsdatascience.com/deploy-to-google-cloud-run-using-github-actions-590ecf957af0
 import os
 import sys
 from flask import Flask
@@ -17,6 +17,8 @@ def create_app(config_filename=''):
     with app.app_context():
         from views.hello import hello
         app.register_blueprint(hello)
+        from views.sample import sample
+        app.register_blueprint(sample)
         return app
 
 
