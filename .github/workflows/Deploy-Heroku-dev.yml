@@ -13,6 +13,7 @@ on:
       - Flask-Templates
       - Flask-Sample-CRUD
       - Flask-Flash
+      - Flask-Auth
 # Your workflows jobs.
 jobs:
   build:
