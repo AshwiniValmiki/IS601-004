@@ -12,6 +12,7 @@ on:
       - Flask-Sample-PyTest
       - Flask-Templates
       - Flask-Sample-CRUD
+      - Flask-Flash
 
 # Your workflows jobs.
 jobs:
