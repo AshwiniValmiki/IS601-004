@@ -1,4 +1,6 @@
 
+ 
+
 {% extends "layout.html" %}
 {% block title %}Add Sample{% endblock %}
 {% block head %}
@@ -19,11 +21,6 @@
             </div>
             <input type="submit" class="btn btn-primary" value="Save Sample" />
         </form>
-        {% if resp %}
-        <div id="output">
-            {{resp}}
-        </div>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
