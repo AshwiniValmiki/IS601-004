@@ -9,7 +9,8 @@ on:
       - prod
       - DeploymentSetup
       - Flask-Sample
-      - Flask-Sample-SQL
+      - Flask-Sample-PyTest
+      - Flask-Templates
 # Your workflows jobs.
 jobs:
   build:
