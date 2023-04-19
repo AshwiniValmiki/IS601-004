@@ -15,6 +15,7 @@ on:
       - Flask-Flash
       - Flask-Auth
       - Flask-Roles
+      - Flask-Profile
 # Your workflows jobs.
 jobs:
   build:
