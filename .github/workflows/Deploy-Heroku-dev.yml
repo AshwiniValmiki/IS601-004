@@ -14,6 +14,7 @@ on:
       - Flask-Sample-CRUD
       - Flask-Flash
       - Flask-Auth
+      - Flask-Roles
 # Your workflows jobs.
 jobs:
   build:
