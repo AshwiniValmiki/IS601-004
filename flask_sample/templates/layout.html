@@ -36,10 +36,10 @@
             }
         </style>
     </div>
-    <div id="content">{% block content %}{% endblock %}</div>
-    <div id="footer" class="footer bg-light text-center">
+    <div id="content"class="overflow-auto bg-secondary text-light" style="height: 84vh">{% block content %}{% endblock %}</div>
+    <div id="footer" class="footer bg-dark text-light text-center">
         {% block footer %}
-        &copy; Copyright 2022.
+        &copy; Copyright 2023.
         {% endblock %}
     </div>
 </body>
