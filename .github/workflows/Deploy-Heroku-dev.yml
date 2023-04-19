@@ -9,6 +9,12 @@ on:
       - dev
       - DeploymentSetup
       - Flask-Sample
+      - Flask-Sample-PyTest
+      - Flask-Templates
+      - Flask-Sample-CRUD
+      - Flask-Flash
+      - Flask-Auth
+      - Flask-Roles
 # Your workflows jobs.
 jobs:
   build:
