@@ -1,4 +1,3 @@
-04_insert_admin_role.sql
 INSERT INTO
     IS601_Roles (
         id,
