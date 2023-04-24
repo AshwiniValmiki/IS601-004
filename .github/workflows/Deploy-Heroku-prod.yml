@@ -18,6 +18,7 @@ on:
       - Flask-Profile
       - Milestone1
       - Flask-Cleanup
+      - Milestone2-Shop
 # Your workflows jobs.
 jobs:
   build:
