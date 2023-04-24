@@ -75,7 +75,8 @@ def items():
 def shop_list():
     rows = []
     args = []
-    ##UCID: ac2526 Date Dec 17th
+    #UCID: av659 
+    #Date: April 21st
     name = request.args.get("name")
     category = request.args.get("category")
     price = request.args.get("price")
@@ -247,7 +248,8 @@ def purchase():
                 DB.getDB().rollback()
         # update stock based on cart data
         if not has_error:
-            ##UCID: ac2526, Date: Dec 21
+            ##UCID: av659
+            #Date: April 21st 
             result = DB.update("""
             UPDATE IS601_S_Products 
                 set stock = stock - (select IFNULL(desired_quantity, 0) FROM IS601_S_Cart WHERE product_id = IS601_S_Products.id and user_id = %(uid)s) 
