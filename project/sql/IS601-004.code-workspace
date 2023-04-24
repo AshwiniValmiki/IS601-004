@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../flask_sample"
+		},
+		{
+			"path": "../../BurgerMachine"
+		},
+		{
+			"path": "../../BusinessManagement"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
