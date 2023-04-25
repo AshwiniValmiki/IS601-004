@@ -139,5 +139,4 @@ def apply():
         del args["users"]
     if "roles" in args:
         del args["roles"]
-        
     return redirect(url_for("roles.assign", **args))
