@@ -214,7 +214,9 @@ def purchase():
         # create order data
         order_id = -1
         if not has_error:
-            ##UCID: ac2526, Date: Dec21
+            ##UCID: av659 
+            #Date: April 21st 
+
             address = request.form.get('apt') + "," + request.form.get('city') + "," + request.form.get('state') + "," + request.form.get('country') + "," + request.form.get('zpcode')
             payment_method = request.form.get('paymentmethod')
             money_received = request.form.get('amount')
