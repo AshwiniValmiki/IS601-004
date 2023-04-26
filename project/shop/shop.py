@@ -216,6 +216,7 @@ def purchase():
         if not has_error:
             ##UCID: av659 
             #Date: April 21st 
+
             address = request.form.get('apt') + "," + request.form.get('city') + "," + request.form.get('state') + "," + request.form.get('country') + "," + request.form.get('zpcode')
             payment_method = request.form.get('paymentmethod')
             money_received = request.form.get('amount')
