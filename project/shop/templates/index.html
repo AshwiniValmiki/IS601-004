@@ -1,0 +1,35 @@
+{% extends "layout.html" %} 
+{% block title %}Home{% endblock %} 
+<!-- content -->
+{% block content %}
+<div class="container-fluid">
+
+    <div class="card mt-5 w-50 mx-auto bg-secondary text-light border border-4 shadow-lg p-4 mb-4 bg-secondary rounded-4">
+
+    <div class="card mt-5 w-50 height=50 mx-auto bg-secondary text-light border border-4 shadow-lg p-4 mb-4 bg-secondary rounded-4">
+
+        <div class="card-body">
+            <h3 class="card-title text-center">Welcome to Shop Online!</h3>
+            <div class="card-text">
+                See what we have
+                <ul>
+                <li>Search for products</li>
+                <li>Add to your wishlists</li>
+                <li>Add them to cart </li>
+                <li>Pay the price and we get them to you.</li>
+                </ul>
+            </div>
+            <div class="card-subtitle lead text-center">
+                (Must log in order to add items to wishlist/cart)
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            {% if current_user.is_authenticated %}
+            <a class="btn btn-success btn-lg" class="nav-link" href="{{url_for('shop.shop_list')}}">Buy</a>
+            {% else %}
+            <a class="btn btn-success btn-lg" class="nav-link" href="{{url_for('auth.login')}}">login</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
